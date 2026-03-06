@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <link rel="icon" href="./assets/logo.png" type="image/png" >
+    <title>TTC</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="mobile-warning">
+        For the best experience, it's better to use a desktop computer to view this website.
+        <br>
+        <button onclick="dismissWarning()">Continue</button>
+    </div>
+    
+    <div class="sidebar">
+        <h2 class="sidebar-title"><img src="./assets/logo.png" alt="TTC logo" class="sidebar-logo"> TTC</h2>
+        <!-- <h2 class="sidebar-title"> TTC</h2> -->
+        
+            <ul>
+                <li><a href="#teaser" class="nav-link"><i class="fas fa-video"></i> Demo Video </a></li>
+                <li><a href="#streaminglong" class="nav-link"><i class="fas fa-project-diagram"></i> Overall Framework </a></li>
+                <!-- <li><a href="#long" class="nav-link"><i class="fas fa-video"></i> Long Video Showcases </a></li> -->
+                <!-- <li><a href="#ultra-long" class="nav-link"><i class="fas fa-video"></i> Ultra-Long Video Showcases </a></li> -->
+                <li><a href="#compare" class="nav-link"><i class="fas fa-trophy"></i> Comparisons </a></li>
+                <li><a href="#kvrecaching" class="nav-link"><i class="fas fa-trophy"></i> Ablations </a></li>
+                <!-- <li><a href="#streaminglong" class="nav-link"><i class="fas fa-project-diagram"></i> Overall Framework </a></li> -->
+                <!-- <li><a href="#contact-us" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li> -->
+            </ul>
+        
+    </div>
+    <div class="content">
+        <div id="paper-info" class="paper-info">
+            <h1><img src="./assets/logo.png" alt="TTC logo" class="title-logo"> Pathwise Test-Time Correction for Autoregressive Long Video Generation</h1>
+            
+        <div class="authors">
+                <p>
+                    <span class="author">
+                        <a href="https://xbxsxp9.github.io/" target="_blank">Xunzhi Xiang</a><sup>*1,2</sup>
+                    </span>,
+                    <span class="author">Zixuan Duan<sup>*1</sup></span>,
+                    <span class="author">Guiyu Zhang<sup>3</sup></span>,
+                    <span class="author">Haiyu Zhang<sup>2</sup></span>,
+                    <span class="author">Zhe Gao<sup>1</sup></span>,
+                    <span class="author">Junta Wu<sup>2</sup></span>,
+                    <span class="author">Shaofeng Zhang<sup>4</sup></span>,
+                    <span class="author">
+                        <a href="https://tengfei-wang.github.io/" target="_blank">Tengfei Wang</a><sup>&dagger;2</sup>
+                    </span>,
+                    <span class="author">
+                        <a href="https://fanq15.github.io/" target="_blank">Qi Fan</a><sup>&dagger;1</sup>
+                    </span>,
+                    <span class="author">Chunchao Guo<sup>2</sup></span>
+                </p>
+
+                <p>
+                    <span class="affiliation"><sup>1</sup> Nanjing University</span>,
+                    <span class="affiliation"><sup>2</sup> Tencent Hunyuan</span>,
+                    <span class="affiliation"><sup>3</sup> Chinese University of Hong Kong, Shenzhen</span>,
+                    <span class="affiliation"><sup>4</sup> University of Science and Technology of China</span>
+                </p>
+                <p style="font-size: 0.85em; color: #666;">
+                    <sup>*</sup> Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup> Corresponding authors
+                </p>
+            </div>
+            <div class="links">
+                <p><a href="https://arxiv.org/abs/2602.05871" target="_blank">Paper (arXiv)</a></p>
+                <p><a href="https://github.com/404" target="_blank">GitHub (Coming Soon)</a></p>
+                <!-- <p><a href="#" target="_blank">Video Demo</a></p> -->
+            </div>
+            <h3>Please stay tuned for all video loading...</h3>
+            <h3>Hover on the videos to see corresponding text prompts, and drag the progress bar to adjust the playback position.</h3>
+
+           
+        
+
+        <section id="streaminglong" class="gallery-section">
+            <h2>Overall Framework</h2>
+            <div class="framework-description">
+                <p>Our Test-Time Correction (TTC) framework provides a training-free approach to suppress error accumulation in distilled autoregressive video diffusion models.
+                TTC leverages the key insight that the diffusion sampling trajectory exhibits a natural phase transition: high noise levels determine global structure, while low-noise steps refine appearance details.
+                We apply correction only during the appearance refinement stage, after the global structure has stabilized, using the initial frame as a stable reference anchor.
+                The path-wise correction process operates in three phases: (1) Reference-guided correction via re-noising and denoising with initial frame context, (2) Re-noising the corrected prediction back to the current noise level with fresh Gaussian samples, and (3) Re-denoising using the original evolving context to ensure smooth temporal integration.
+                This approach avoids abrupt state transitions by working entirely within valid diffusion transitions, achieving results comparable to resource-intensive training-based methods with negligible overhead.</p>
+            </div>
+            <div class="framework-image-container">
+                <img src="./assets/pipeline.png" alt="Overall Framework Pipeline" class="framework-image">
+            </div>
+        </section>
+
+        <section id="TTC" class="gallery-section">
+            <h2>Test-Time Correction Video Generation</Test-Time></Time></h2>
+            <div class="speed-controls" role="group" aria-label="Playback speed">
+                <span class="speed-label">Play speed:</span>
+                <button class="speed-btn active" data-speed="1">x1</button>
+                <button class="speed-btn" data-speed="2">x2</button>
+            </div>
+            <div class="gallery-4 compare-grid">
+
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up portrait of a woman, her face illuminated by the side lighting, capturing her delicate features and expressive eyes. As the camera slowly pulls back, it reveals her sitting gracefully in a cozy armchair, her hair falling softly over her shoulders. She wears a elegant evening gown in a deep shade of blue, adorned with intricate lace and sparkling jewels. The background features a warm, candlelit room with soft shadows and a faint hint of a fireplace. The photo has a romantic and timeless quality, reminiscent of a classic Hollywood portrait. A medium shot transitioning to a wider view.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/002.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A dynamic photograph capturing a little boy riding his bike through a garden that transitions through the changing seasons—fall leaves crunch underfoot, winter snow blankets the ground, spring flowers bloom, and summer sunshine sparkles through the foliage. The boy, with curly brown hair and a joyful smile, pedals energetically, his arms outstretched in excitement. The garden backdrop features trees with branches adorned in each season’s distinctive foliage. A series of shots taken from various angles, starting with a wide shot of the boy entering the garden in spring, transitioning to a mid-shot of him biking through the colorful autumn leaves, then a close-up of him riding through a snowy path, and finally a wide-angle view of him enjoying the warm summer sun. The photo has a natural, documentary style, emphasizing the boy’s natural movements and the vibrant colors of the changing seasons.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/003.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A handheld tracking shot following a red balloon floating above the ground in an abandoned street. The balloon drifts gracefully, its bright red color contrasting sharply against the decaying urban backdrop. The street is littered with debris and graffiti-covered walls, with broken windows and rusted cars scattered about. Shadows dance across the scene as sunlight filters through gaps in the buildings. The camera moves fluidly, capturing the balloon's gentle ascent and descent, emphasizing its playful motion. A close-up of the balloon transitions to a wider shot, showcasing the desolate environment.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/004.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A subtle and elegant photograph in a Japanese style, capturing a woman with gentle, contemplative eyes and flowing dark hair sitting by the window of a high-speed train. The train moves rapidly through a bustling cityscape, with blurred reflections of the city lights and buildings on the window pane. The woman appears serene, her hands resting gently on her lap. The background features a blend of traditional Japanese architecture and modern skyscrapers, with a soft, muted color palette. The photo has a vintage film texture, emphasizing the movement and energy of the scene. A medium shot from a slightly angled perspective, highlighting the woman's thoughtful gaze and the dynamic motion of the train.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/005.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A vibrant concert stage scene in the style of a music video, featuring a woman in the spotlight, singing passionately. She stands confidently on the stage, microphone in hand, with a captivating expression on her face. The bright light behind her creates a dramatic silhouette, casting a warm glow over her. She wears a stylish, form-fitting black dress with intricate silver embroidery, emphasizing her graceful movements. The background features a blurred stage with colorful lights and banners advertising the event. A dynamic medium shot capturing the singer from a slightly elevated angle, highlighting her performance and the dramatic lighting effects.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/006.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A vibrant and dynamic illustration in the style of a nature documentary, featuring a dragon-toucan walking gracefully through the vast grasslands of the Serengeti. The dragon-toucan has iridescent green and blue feathers, with a long, curved beak and large, expressive eyes. It strides confidently across the savannah, its wings slightly spread for balance. The background showcases a rich tapestry of African wildlife, with zebras, gazelles, and elephants in the distance. The sun is setting, casting a warm golden glow over the landscape. The camera angle is from a low, ground-level perspective, capturing the dragon-toucan in motion as it moves through the grass.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/007.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A romantic scene in a nighttime cityscape where a man and a woman walk hand in hand under a starry sky, their faces illuminated by the soft glow of streetlights. They are dressed in casual yet elegant attire, the man in a dark blue suit and the woman in a light green dress. A wooden bucket is placed on the ground nearby, adding a touch of rustic charm. The couple’s expressions are filled with happiness and affection, as they gaze into each other’s eyes. The background features tall buildings with windows lit up, creating a warm and cozy atmosphere. The stars above twinkle brightly, enhancing the serene and intimate mood. The scene is captured in a medium shot with a slightly upward angle, capturing both the couple and the surrounding environment.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/008.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a bright blue parrot's shimmering feathers, capturing the unique and vibrant colors in the light. The parrot's feathers glisten with a metallic sheen, showcasing a mix of deep indigos, vivid greens, and rich blues. Its eyes sparkle with curiosity, and it appears lively and alert, perched on a branch. The background is blurred, highlighting the parrot against a soft, warm environment. The photo has a naturalistic and lifelike quality, emphasizing the bird's detailed plumage and natural movements.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/A dynamic and lively moment captured in a vibrant pop art style, showing a young woman jumping up an-0.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A dynamic and lively moment captured in a vibrant pop art style, showing a young woman jumping up and down with joy, her movements full of energy and excitement. She dances energetically, her arms flailing and legs kicking in the air. Her face is filled with happiness and a wide smile. She wears a colorful floral dress that flows with her movements. The background features a blurred cityscape with hints of tall buildings and bright lights, giving the scene a bustling urban feel. A mid-shot from a slightly low angle, capturing the full range of her joyful dance.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/An astronaut running through a narrow alley in Rio de Janeiro, Brazil. The astronaut is dressed in a-0.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">An astronaut running through a narrow alley in Rio de Janeiro, Brazil. The astronaut is dressed in a bright white spacesuit with a helmet that reflects sunlight. The spacesuit is adorned with various technical patches and has a reflective texture. The astronaut's movements are energetic and dynamic, with one hand on their hip and the other reaching forward for balance. The background features colorful street art, vibrant buildings, and people bustling about. The alley is dimly lit, with shadows cast by the narrow walls. A mid-shot with the astronaut running from a low-angle perspective, capturing the excitement and contrast between the urban environment and the space exploration gear.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/a.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up 3D animated scene of a short, fluffy monster kneeling beside a melting red candle. The monster has large, wide eyes and an open mouth, gazing at the flame with a look of wonder and curiosity. Its soft, fluffy fur contrasts with the warm, dramatic lighting that highlights every detail of its gentle, innocent expression. The pose conveys a sense of playfulness and exploration, as if the creature is discovering the world for the first time. The background features a cozy, warmly lit room with subtle hints of a fireplace and soft furnishings, enhancing the overall atmosphere. The use of warm colors and dramatic lighting creates a captivating and inviting scene.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/kangaroo.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A vibrant cartoon-style illustration depicting a kangaroo performing a lively disco dance. The kangaroo has a joyful expression, with large, expressive eyes and a mischievous grin. It wears a colorful sequined outfit with sparkles, including a glittery top and matching pants. Its tail is fluffed out and swaying rhythmically. The kangaroo moves with natural fluidity, one foot lifted and the other stepping forward. The background features a blurred dance floor with colorful lights and dancing figures, creating a festive atmosphere. The illustration has a smooth, hand-drawn style with exaggerated proportions. A dynamic close-up shot from a slightly elevated angle.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/A detailed digital painting in the style of a realistic Japanese manga, capturing reflections in the-0.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A detailed digital painting in the style of a realistic Japanese manga, capturing reflections in the window of a train traveling through the Tokyo suburbs. The train moves smoothly, passing through lush green fields and dense forests. Outside the window, the scenery blurs into a series of vivid colors—emerald greens, deep browns, and vibrant yellows. Inside the train, a young woman with long black hair and traditional Japanese clothing sits with a contemplative expression, gazing out the window. Her kimono is adorned with intricate patterns, and she wears a simple obi sash tied neatly. The train cabin is dimly lit, with soft shadows playing across the wooden seats. The background features a blurred yet recognizable landscape, with hints of Tokyo skyscrapers and cherry blossoms in the distance. A medium shot from a slightly tilted angle, emphasizing the reflection and the woman's serene expression.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/A macro shot focusing on the face of a young woman with freckles, her expression intense as she look-0.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A macro shot focusing on the face of a young woman with freckles, her expression intense as she looks intently for something. Her freckles are scattered across her cheeks and nose, adding a playful charm to her face. Her eyes are wide and slightly squinted, peering closely at the object of her search. Her hair is loose, framing her face gently, with strands falling over her forehead. The background is blurred, but you can make out the faint outline of a table or desk where she is searching. The texture of her skin is smooth and细腻，带有淡淡的红润。A close-up shot from a very close angle, capturing the natural and focused expression of the young woman.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/A dynamic and lively hamster illustration in a bright cartoon style, capturing the hamster energetic-0.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A dynamic and lively hamster illustration in a bright cartoon style, capturing the hamster energetically running on a spinning wheel. The hamster has a playful expression, with round cheeks and alert eyes focused on the wheel. It is wearing a small, colorful harness that matches its cheerful demeanor. The background features a cozy, wooden cage with a checkered floor and some toys scattered around, adding to the hamster’s homey environment. The spinning wheel is intricately detailed, with spokes and a small door that opens and closes as it turns. The scene is captured from a slightly elevated angle, emphasizing the hamster’s movement and the intricate details of its surroundings.
+</div>
+                </div>
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./30s/A photorealistic closeup video of two pirate ships battling each other as they sail inside a steamin-0.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A photorealistic closeup video of two pirate ships battling each other as they sail inside a steaming cup of coffee. The ships are intricately detailed, with wooden planks, sails flapping in the breeze, and cannons aimed at each other. The crew members, wearing authentic pirate attire, brandish swords and pistols, their expressions fierce and determined. The coffee foam creates a frothy, turbulent sea, with ripples and waves realistically depicted. The background is a blurred, warm brown coffee surface, with steam rising gently. The camera angle is slightly elevated, capturing the intense action from above.
+</div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section id="compare" class="gallery-section">
+            <h2>Comparisons</h2>
+            <div class="speed-controls" role="group" aria-label="Playback speed">
+                <span class="speed-label">Play speed:</span>
+                <button class="speed-btn active" data-speed="1">x1</button>
+                <button class="speed-btn" data-speed="2">x2</button>
+            </div>
+            <div class="gallery-6 compare-grid">
+                <div class="col-header">Rolling Forcing</div>
+                <div class="col-header">LongLive</div>
+                <div class="col-header">CausVid</div>
+                <div class="col-header">CV + Ours</div>
+                <div class="col-header">Self-Forcing</div>
+                <div class="col-header">SF + Ours</div>
+
+
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/rollingforcing/020.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A stunning aerial photograph captured from a drone, circling around a majestic historic church perched atop a rocky outcropping along the Amalfi Coast. The camera captures the intricate architectural details and tiered pathways and patios that adorn the church, with waves crashing against the rocks below. The view extends to the horizon, showcasing the coastal waters and the rolling hills of the Amalfi Coast in Italy. Distant figures can be seen leisurely walking and enjoying the dramatic ocean views from the patios. The warm glow of the afternoon sun bathes the scene in a magical and romantic light, creating a breathtaking and serene atmosphere. The photo has a high-resolution, detailed quality that highlights every texture and color of the landscape. A wide-angle shot from a dynamic aerial perspective.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/longlive/020.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A stunning aerial photograph captured from a drone, circling around a majestic historic church perched atop a rocky outcropping along the Amalfi Coast. The camera captures the intricate architectural details and tiered pathways and patios that adorn the church, with waves crashing against the rocks below. The view extends to the horizon, showcasing the coastal waters and the rolling hills of the Amalfi Coast in Italy. Distant figures can be seen leisurely walking and enjoying the dramatic ocean views from the patios. The warm glow of the afternoon sun bathes the scene in a magical and romantic light, creating a breathtaking and serene atmosphere. The photo has a high-resolution, detailed quality that highlights every texture and color of the landscape. A wide-angle shot from a dynamic aerial perspective.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/causvid/020.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A stunning aerial photograph captured from a drone, circling around a majestic historic church perched atop a rocky outcropping along the Amalfi Coast. The camera captures the intricate architectural details and tiered pathways and patios that adorn the church, with waves crashing against the rocks below. The view extends to the horizon, showcasing the coastal waters and the rolling hills of the Amalfi Coast in Italy. Distant figures can be seen leisurely walking and enjoying the dramatic ocean views from the patios. The warm glow of the afternoon sun bathes the scene in a magical and romantic light, creating a breathtaking and serene atmosphere. The photo has a high-resolution, detailed quality that highlights every texture and color of the landscape. A wide-angle shot from a dynamic aerial perspective.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/ca+ours/020.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A stunning aerial photograph captured from a drone, circling around a majestic historic church perched atop a rocky outcropping along the Amalfi Coast. The camera captures the intricate architectural details and tiered pathways and patios that adorn the church, with waves crashing against the rocks below. The view extends to the horizon, showcasing the coastal waters and the rolling hills of the Amalfi Coast in Italy. Distant figures can be seen leisurely walking and enjoying the dramatic ocean views from the patios. The warm glow of the afternoon sun bathes the scene in a magical and romantic light, creating a breathtaking and serene atmosphere. The photo has a high-resolution, detailed quality that highlights every texture and color of the landscape. A wide-angle shot from a dynamic aerial perspective.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/selfforicng/020.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A stunning aerial photograph captured from a drone, circling around a majestic historic church perched atop a rocky outcropping along the Amalfi Coast. The camera captures the intricate architectural details and tiered pathways and patios that adorn the church, with waves crashing against the rocks below. The view extends to the horizon, showcasing the coastal waters and the rolling hills of the Amalfi Coast in Italy. Distant figures can be seen leisurely walking and enjoying the dramatic ocean views from the patios. The warm glow of the afternoon sun bathes the scene in a magical and romantic light, creating a breathtaking and serene atmosphere. The photo has a high-resolution, detailed quality that highlights every texture and color of the landscape. A wide-angle shot from a dynamic aerial perspective.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/sf+ours/020.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A stunning aerial photograph captured from a drone, circling around a majestic historic church perched atop a rocky outcropping along the Amalfi Coast. The camera captures the intricate architectural details and tiered pathways and patios that adorn the church, with waves crashing against the rocks below. The view extends to the horizon, showcasing the coastal waters and the rolling hills of the Amalfi Coast in Italy. Distant figures can be seen leisurely walking and enjoying the dramatic ocean views from the patios. The warm glow of the afternoon sun bathes the scene in a magical and romantic light, creating a breathtaking and serene atmosphere. The photo has a high-resolution, detailed quality that highlights every texture and color of the landscape. A wide-angle shot from a dynamic aerial perspective.
+</div>
+                </div>
+
+
+
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/rollingforcing/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/longlive/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/causvid/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/ca+ours/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/selfforicng/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/sf+ours/001.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A close-up shot of a Victoria crowned pigeon in a naturalistic wildlife photography style, showcasing its striking blue plumage and red chest. The bird’s crest is adorned with delicate, lacy feathers, and its eye is a striking red color, adding to its regal and majestic appearance. The pigeon’s head is tilted slightly to the side, giving it a regal gaze. The background is blurred, emphasizing the bird’s striking beauty against a soft, muted backdrop. The lighting highlights the bird’s feathers, creating a vibrant and lifelike image.
+</div>
+                </div>
+
+
+                
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/rollingforcing/023.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming comic-style illustration depicting a cozy living room scene where a fluffy gray cat is waking up its sleeping owner, who lies on the couch with a sleepy, resigned expression. The cat, with large, round eyes and a mischievous look, is pawing at the owner's face and meowing insistently. The owner attempts to ignore the cat, turning away slightly, but the cat persists, jumping onto the owner's chest and nuzzling their hand. Finally, the owner, unable to resist, reaches under the pillow and pulls out a small bag of treats, offering it to the cat with a playful smile. The background shows soft, warm lighting from a nearby lamp, with scattered books and a blanket on the couch. A medium shot from a slightly elevated angle, capturing both the cat and the owner's interaction.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/longlive/023.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming comic-style illustration depicting a cozy living room scene where a fluffy gray cat is waking up its sleeping owner, who lies on the couch with a sleepy, resigned expression. The cat, with large, round eyes and a mischievous look, is pawing at the owner's face and meowing insistently. The owner attempts to ignore the cat, turning away slightly, but the cat persists, jumping onto the owner's chest and nuzzling their hand. Finally, the owner, unable to resist, reaches under the pillow and pulls out a small bag of treats, offering it to the cat with a playful smile. The background shows soft, warm lighting from a nearby lamp, with scattered books and a blanket on the couch. A medium shot from a slightly elevated angle, capturing both the cat and the owner's interaction.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/causvid/023.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming comic-style illustration depicting a cozy living room scene where a fluffy gray cat is waking up its sleeping owner, who lies on the couch with a sleepy, resigned expression. The cat, with large, round eyes and a mischievous look, is pawing at the owner's face and meowing insistently. The owner attempts to ignore the cat, turning away slightly, but the cat persists, jumping onto the owner's chest and nuzzling their hand. Finally, the owner, unable to resist, reaches under the pillow and pulls out a small bag of treats, offering it to the cat with a playful smile. The background shows soft, warm lighting from a nearby lamp, with scattered books and a blanket on the couch. A medium shot from a slightly elevated angle, capturing both the cat and the owner's interaction.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/ca+ours/023.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming comic-style illustration depicting a cozy living room scene where a fluffy gray cat is waking up its sleeping owner, who lies on the couch with a sleepy, resigned expression. The cat, with large, round eyes and a mischievous look, is pawing at the owner's face and meowing insistently. The owner attempts to ignore the cat, turning away slightly, but the cat persists, jumping onto the owner's chest and nuzzling their hand. Finally, the owner, unable to resist, reaches under the pillow and pulls out a small bag of treats, offering it to the cat with a playful smile. The background shows soft, warm lighting from a nearby lamp, with scattered books and a blanket on the couch. A medium shot from a slightly elevated angle, capturing both the cat and the owner's interaction.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/selfforicng/023.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming comic-style illustration depicting a cozy living room scene where a fluffy gray cat is waking up its sleeping owner, who lies on the couch with a sleepy, resigned expression. The cat, with large, round eyes and a mischievous look, is pawing at the owner's face and meowing insistently. The owner attempts to ignore the cat, turning away slightly, but the cat persists, jumping onto the owner's chest and nuzzling their hand. Finally, the owner, unable to resist, reaches under the pillow and pulls out a small bag of treats, offering it to the cat with a playful smile. The background shows soft, warm lighting from a nearby lamp, with scattered books and a blanket on the couch. A medium shot from a slightly elevated angle, capturing both the cat and the owner's interaction.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/sf+ours/023.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming comic-style illustration depicting a cozy living room scene where a fluffy gray cat is waking up its sleeping owner, who lies on the couch with a sleepy, resigned expression. The cat, with large, round eyes and a mischievous look, is pawing at the owner's face and meowing insistently. The owner attempts to ignore the cat, turning away slightly, but the cat persists, jumping onto the owner's chest and nuzzling their hand. Finally, the owner, unable to resist, reaches under the pillow and pulls out a small bag of treats, offering it to the cat with a playful smile. The background shows soft, warm lighting from a nearby lamp, with scattered books and a blanket on the couch. A medium shot from a slightly elevated angle, capturing both the cat and the owner's interaction.
+</div>
+                </div>
+
+                
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/rollingforcing/069.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming illustration in a watercolor style of a young white rabbit wearing glasses and reading a newspaper. The rabbit has soft fur, large round ears, and gentle, curious eyes. It sits upright on a cozy armchair, one paw holding the newspaper and the other resting on its knee. The background features a warm living room with a fireplace, a few books on a side table, and a blurred view of a window with falling leaves. The rabbit's expression is one of focused interest, with a slight smile playing on its lips. A close-up shot from a slightly elevated angle, capturing the rabbit's detailed features and the newspaper's headlines.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/longlive/069.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming illustration in a watercolor style of a young white rabbit wearing glasses and reading a newspaper. The rabbit has soft fur, large round ears, and gentle, curious eyes. It sits upright on a cozy armchair, one paw holding the newspaper and the other resting on its knee. The background features a warm living room with a fireplace, a few books on a side table, and a blurred view of a window with falling leaves. The rabbit's expression is one of focused interest, with a slight smile playing on its lips. A close-up shot from a slightly elevated angle, capturing the rabbit's detailed features and the newspaper's headlines.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/causvid/069.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming illustration in a watercolor style of a young white rabbit wearing glasses and reading a newspaper. The rabbit has soft fur, large round ears, and gentle, curious eyes. It sits upright on a cozy armchair, one paw holding the newspaper and the other resting on its knee. The background features a warm living room with a fireplace, a few books on a side table, and a blurred view of a window with falling leaves. The rabbit's expression is one of focused interest, with a slight smile playing on its lips. A close-up shot from a slightly elevated angle, capturing the rabbit's detailed features and the newspaper's headlines.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/ca+ours/069.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming illustration in a watercolor style of a young white rabbit wearing glasses and reading a newspaper. The rabbit has soft fur, large round ears, and gentle, curious eyes. It sits upright on a cozy armchair, one paw holding the newspaper and the other resting on its knee. The background features a warm living room with a fireplace, a few books on a side table, and a blurred view of a window with falling leaves. The rabbit's expression is one of focused interest, with a slight smile playing on its lips. A close-up shot from a slightly elevated angle, capturing the rabbit's detailed features and the newspaper's headlines.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/selfforicng/069.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming illustration in a watercolor style of a young white rabbit wearing glasses and reading a newspaper. The rabbit has soft fur, large round ears, and gentle, curious eyes. It sits upright on a cozy armchair, one paw holding the newspaper and the other resting on its knee. The background features a warm living room with a fireplace, a few books on a side table, and a blurred view of a window with falling leaves. The rabbit's expression is one of focused interest, with a slight smile playing on its lips. A close-up shot from a slightly elevated angle, capturing the rabbit's detailed features and the newspaper's headlines.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/sf+ours/069.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A charming illustration in a watercolor style of a young white rabbit wearing glasses and reading a newspaper. The rabbit has soft fur, large round ears, and gentle, curious eyes. It sits upright on a cozy armchair, one paw holding the newspaper and the other resting on its knee. The background features a warm living room with a fireplace, a few books on a side table, and a blurred view of a window with falling leaves. The rabbit's expression is one of focused interest, with a slight smile playing on its lips. A close-up shot from a slightly elevated angle, capturing the rabbit's detailed features and the newspaper's headlines.
+</div>
+                </div>
+
+
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/rollingforcing/230.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual street photography style, featuring a young man with a playful, mischievous grin, his lips curled up in excitement as he pulls off a prank on a friend. The man, with tousled brown hair and a casual shirt, stands slightly to the side, one hand gesturing towards his friend who looks surprised but amused. The background is a bustling city street, with people walking by and a few vehicles in the distance, creating a lively urban scene. The photo has a warm, natural color palette with soft shadows and highlights. A medium shot from a low angle, capturing the interaction between the two friends.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/longlive/230.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual street photography style, featuring a young man with a playful, mischievous grin, his lips curled up in excitement as he pulls off a prank on a friend. The man, with tousled brown hair and a casual shirt, stands slightly to the side, one hand gesturing towards his friend who looks surprised but amused. The background is a bustling city street, with people walking by and a few vehicles in the distance, creating a lively urban scene. The photo has a warm, natural color palette with soft shadows and highlights. A medium shot from a low angle, capturing the interaction between the two friends.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/causvid/230.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual street photography style, featuring a young man with a playful, mischievous grin, his lips curled up in excitement as he pulls off a prank on a friend. The man, with tousled brown hair and a casual shirt, stands slightly to the side, one hand gesturing towards his friend who looks surprised but amused. The background is a bustling city street, with people walking by and a few vehicles in the distance, creating a lively urban scene. The photo has a warm, natural color palette with soft shadows and highlights. A medium shot from a low angle, capturing the interaction between the two friends.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/ca+ours/230.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual street photography style, featuring a young man with a playful, mischievous grin, his lips curled up in excitement as he pulls off a prank on a friend. The man, with tousled brown hair and a casual shirt, stands slightly to the side, one hand gesturing towards his friend who looks surprised but amused. The background is a bustling city street, with people walking by and a few vehicles in the distance, creating a lively urban scene. The photo has a warm, natural color palette with soft shadows and highlights. A medium shot from a low angle, capturing the interaction between the two friends.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/selfforicng/230.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual street photography style, featuring a young man with a playful, mischievous grin, his lips curled up in excitement as he pulls off a prank on a friend. The man, with tousled brown hair and a casual shirt, stands slightly to the side, one hand gesturing towards his friend who looks surprised but amused. The background is a bustling city street, with people walking by and a few vehicles in the distance, creating a lively urban scene. The photo has a warm, natural color palette with soft shadows and highlights. A medium shot from a low angle, capturing the interaction between the two friends.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/sf+ours/230.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual street photography style, featuring a young man with a playful, mischievous grin, his lips curled up in excitement as he pulls off a prank on a friend. The man, with tousled brown hair and a casual shirt, stands slightly to the side, one hand gesturing towards his friend who looks surprised but amused. The background is a bustling city street, with people walking by and a few vehicles in the distance, creating a lively urban scene. The photo has a warm, natural color palette with soft shadows and highlights. A medium shot from a low angle, capturing the interaction between the two friends.
+</div>
+                </div>
+
+
+
+
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/rollingforcing/219.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual photography style, featuring a young man with rosy cheeks, slightly flushed from embarrassment, telling a humorous story to a group of friends. He has tousled brown hair, a friendly smile, and a slightly sheepish look, with one hand gesturing animatedly. His eyes sparkle with amusement, and his body leans slightly forward, engaged in the moment. The background shows a cozy living room with a few people gathered around, including a friend laughing and another looking amused. The lighting is warm and natural, casting soft shadows. The photo has a slightly vintage feel. A medium shot with a dynamic angle, capturing the interaction between the man and his audience.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/longlive/219.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual photography style, featuring a young man with rosy cheeks, slightly flushed from embarrassment, telling a humorous story to a group of friends. He has tousled brown hair, a friendly smile, and a slightly sheepish look, with one hand gesturing animatedly. His eyes sparkle with amusement, and his body leans slightly forward, engaged in the moment. The background shows a cozy living room with a few people gathered around, including a friend laughing and another looking amused. The lighting is warm and natural, casting soft shadows. The photo has a slightly vintage feel. A medium shot with a dynamic angle, capturing the interaction between the man and his audience.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/causvid/219.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual photography style, featuring a young man with rosy cheeks, slightly flushed from embarrassment, telling a humorous story to a group of friends. He has tousled brown hair, a friendly smile, and a slightly sheepish look, with one hand gesturing animatedly. His eyes sparkle with amusement, and his body leans slightly forward, engaged in the moment. The background shows a cozy living room with a few people gathered around, including a friend laughing and another looking amused. The lighting is warm and natural, casting soft shadows. The photo has a slightly vintage feel. A medium shot with a dynamic angle, capturing the interaction between the man and his audience.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/ca+ours/219.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual photography style, featuring a young man with rosy cheeks, slightly flushed from embarrassment, telling a humorous story to a group of friends. He has tousled brown hair, a friendly smile, and a slightly sheepish look, with one hand gesturing animatedly. His eyes sparkle with amusement, and his body leans slightly forward, engaged in the moment. The background shows a cozy living room with a few people gathered around, including a friend laughing and another looking amused. The lighting is warm and natural, casting soft shadows. The photo has a slightly vintage feel. A medium shot with a dynamic angle, capturing the interaction between the man and his audience.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/selfforicng/219.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual photography style, featuring a young man with rosy cheeks, slightly flushed from embarrassment, telling a humorous story to a group of friends. He has tousled brown hair, a friendly smile, and a slightly sheepish look, with one hand gesturing animatedly. His eyes sparkle with amusement, and his body leans slightly forward, engaged in the moment. The background shows a cozy living room with a few people gathered around, including a friend laughing and another looking amused. The lighting is warm and natural, casting soft shadows. The photo has a slightly vintage feel. A medium shot with a dynamic angle, capturing the interaction between the man and his audience.
+</div>
+                </div>
+                <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                    <video class="gallery-video" loop muted autoplay controls>
+                        <source src="./exp/sf+ours/219.mp4" type="video/mp4">
+                    </video>
+                    <div class="prompt-overlay">A candid moment captured in a casual photography style, featuring a young man with rosy cheeks, slightly flushed from embarrassment, telling a humorous story to a group of friends. He has tousled brown hair, a friendly smile, and a slightly sheepish look, with one hand gesturing animatedly. His eyes sparkle with amusement, and his body leans slightly forward, engaged in the moment. The background shows a cozy living room with a few people gathered around, including a friend laughing and another looking amused. The lighting is warm and natural, casting soft shadows. The photo has a slightly vintage feel. A medium shot with a dynamic angle, capturing the interaction between the man and his audience.
+</div>
+                </div>
+            </div>
+
+        </section>
+
+        
+
+
+        <section id="contact-us" class="contact-us">
+            <h2>If you find this work useful, please consider citing:</h2>
+            <div class="citation-container">
+                <div class="citation-box">
+                    <pre>@article{xiang2026pathwise,
+  title={Pathwise Test-Time Correction for Autoregressive Long Video Generation},
+  author={Xiang, Xunzhi and Duan, Zixuan and Zhang, Guiyu and Zhang, Haiyu and Gao, Zhe and Wu, Junta and Zhang, Shaofeng and Wang, Tengfei and Fan, Qi and Guo, Chunchao},
+  journal={arXiv preprint arXiv:2602.05871},
+  year={2026}
+}</pre>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #888;">Thank LongLive, Jenga, UltraPixel, ControlNeXt, and ToonCrafter for providing us the project page's template!</p>
+        </section>
+        
+    </div>
+
+   <!-- Modal for image enlargement -->
+    <script src="./interactive_prompts.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
